@@ -16,7 +16,7 @@ class Plan(models.Model):
     descripcion        = models.TextField(max_length = 500)
     precio             = models.PositiveIntegerField()
     status             = models.BooleanField(default=True)
-    imageplan          = models.ManyToManyField(ImagePlan, null = True)
+    imageplan          = models.ManyToManyField(ImagePlan, null=True, blank=True)
 
     def __str__(self):
         return self.nombre
@@ -37,13 +37,23 @@ class ContratoSucursal(models.Model):
     def __str__(self):
         return self.detalle
 
+class Comprador(models.Model):
+    nombre             = models.CharField(max_length = 150)
+    apellido           = models.CharField(max_length = 150)
+
+    def __str__(self):
+        return self.nombre
+
 class Turista(models.Model):
     nombre             = models.CharField(max_length = 150)
     apellido           = models.CharField(max_length = 150)
+    pasaporte          = models.CharField(max_length = 150, null= True)
+    comprador          = models.ForeignKey(Comprador, on_delete = models.CASCADE, null = True)
     contratosucursal   = models.ForeignKey(ContratoSucursal, on_delete = models.CASCADE)
 
     def __str__(self):
         return self.nombre
+    
 
 class Vuelo(models.Model):
     paisorigen         = models.CharField(max_length = 200)
@@ -63,8 +73,7 @@ class Vuelo(models.Model):
 class ContratoVuelo(models.Model):
     clase              = models.CharField(max_length = 150)
     turista            = models.ForeignKey(Turista, on_delete=models.CASCADE)
-    vuelo              = models.ForeignKey(Vuelo, on_delete=models.CASCADE)
-
+    vuelo              = models.ManyToManyField(Vuelo, null=False, blank=False)
     def __str__(self):
         return self.clase
 
@@ -74,7 +83,7 @@ class Hotel(models.Model):
     ciudad             = models.CharField( max_length = 150 )
     inTelefono         = models.PositiveIntegerField()
     telefono           = models.PositiveIntegerField()
-    ImageHotel         = models.ManyToManyField(ImageHotel, null = True)
+    ImageHotel         = models.ManyToManyField(ImageHotel, null=True, blank=True)
 
     def __str__(self):
         return self.nombre

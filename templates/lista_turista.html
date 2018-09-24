@@ -1,0 +1,66 @@
+{% extends "administrador.html" %}
+{% block titulo %}
+
+{% endblock titulo %}
+
+{% block contenido %}
+
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Lista de Turistas</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Pasaporte</th>
+                        <th>Comprador</th>
+                        <th>Contratosucursal</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Pasaporte</th>
+                        <th>Comprador</th>
+                        <th>Contratosucursal</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    {% for x in listaT %}
+                    <tr>
+                        <td>{{x.nombre}}</td>
+                        <td> {{x.apellido}} </td>
+                        <td> {{x.pasaporte}} </td>
+                        <td> {{x.comprador}} </td>
+                        <td> {{x.contratosucursal}} </td>
+                        <td>
+                            <a href="{% url 'ver_plan' id_plan=x.id %}">
+                                <div class="fas fa-search"></div>
+                            </a>
+
+                            <a href="">
+                                <div class="fas fa-edit"></div>
+                            </a>
+                            <a href="">
+                                <div class="fas fa-trash"></div>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+<!--     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+</div>
+
+
+{% endblock contenido %}
