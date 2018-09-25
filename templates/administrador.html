@@ -55,19 +55,19 @@
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item dropdown">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{% url 'lista_comprador' %}">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Compradores</span>
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{% url 'lista_turista' %}">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Turistas</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{% url 'lista_planes' %}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Planes</span></a>
             </li>
@@ -77,12 +77,12 @@
                     <span>contrato Vuelos</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{% url 'vuelos' %}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Vuelos</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{% url 'reservaciones' %}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Reservaciones</span></a>
             </li>

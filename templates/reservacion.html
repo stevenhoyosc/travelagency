@@ -1,0 +1,55 @@
+{% extends "administrador.html" %}
+{% block titulo %}
+
+{% endblock titulo %}
+{% block contenido %}
+
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Lista de reservaciones </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">id reservacion</th>
+                        <th scope="col">Fecha de Llegada</th>
+                        <th scope="col">Fecha de Partida</th>
+                        <th scope="col">Turista</th>
+                        <th scope="col">Hotel</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for x in listaRes %}
+                    <tr>
+                        <td> {{x.id}}</td>
+                        <td> {{x.fechallegada}} </td>
+                        <td> {{x.fechapartida}} </td>
+                        <td> {{x.turista}} </td>
+                        <td> {{x.hotel}} </td>
+                        <td>
+                            <a href="{% url 'ver_plan' id_plan=x.id %}">
+                                <div class="fas fa-search"></div>
+                            </a>
+
+                            <a href="">
+                                <div class="fas fa-edit"></div>
+                            </a>
+                            <a href="">
+                                <div class="fas fa-trash"></div>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+</div>
+
+{% endblock contenido %}

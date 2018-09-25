@@ -33,13 +33,17 @@ def vista_login (request):
     
     formulario = login_form()
     return render (request,'login.html',locals())
+
 def vista_logout (request):
     logout(request)
     return redirect('/login/')
 
 def lista_planes_view (request):
-    listaP = Plan.objects.filter(status = True)
-    return render(request, 'lista_planes.html',locals())
+    listaP = Plan.objects.filter()
+    if request.user.is_authenticated and request.user.is_superuser:
+        return render(request, 'lista_plan.html',locals())
+    else:
+        return render(request, 'lista_planes.html',locals())
 
 def ver_plan_view (request, id_plan):
     try:
@@ -49,6 +53,42 @@ def ver_plan_view (request, id_plan):
         msj = "el plan no existe"
     return render(request,'ver_plan.html',locals())
 
-def lista_turistas_view (request):
-    listaT = Turista.objects.filter()
-    return render(request, 'lista_turista.html',locals())
+def lista_turista_view (request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        listaT = Turista.objects.filter()
+        return render(request, 'lista_turista.html',locals())
+
+def lista_comprador_view (request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        listaC = Comprador.objects.filter()
+        return render(request, 'lista_comprador.html',locals())
+
+def contratovuelo_view (request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        listaContratoV = ContratoVuelo.objects.filter()
+        return render(request, '.html',locals())
+
+def vuelos_view (request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        listaVuelos = Vuelo.objects.filter()
+        return render(request, 'vuelos.html',locals())
+
+def reservaciones_view (request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        listaRes = Reservacion.objects.filter()
+        return render(request, 'reservacion.html',locals())
+
+def hoteles_view (request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        listaHotel = Hotel.objects.filter()
+        return render(request, '.html',locals())
+
+def contratosucursal_view (request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        listaContratoSucursal = ContratoSucursal.objects.filter()
+        return render(request, '.html',locals())
+
+def sucursales_view (request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        listaSucursales = Sucursal.objects.filter()
+        return render(request, '.html',locals())
